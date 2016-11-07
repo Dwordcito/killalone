@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
@@ -26,6 +27,7 @@ public class GameScreen extends BaseScreen {
     private Factory factory;
     private Skin skin;
     private Label score;
+    private Main game;
 
     private List<Floor> floorList = new ArrayList<Floor>();
     private List<Bullet> bulletList = new ArrayList<Bullet>();
@@ -36,6 +38,7 @@ public class GameScreen extends BaseScreen {
 
     public GameScreen(Main game) {
         super(game);
+        this.game = game;
 
         stage = new Stage(new FitViewport(640, 360));
         position = new Vector3(stage.getCamera().position);
@@ -118,6 +121,13 @@ public class GameScreen extends BaseScreen {
                 bodyDeleteList.remove(body);
             }
         }
+        if(!world.isLocked())
+        {
+            if(!player.isAlive()){
+                this.game.setScreen(this.game.playerSelectScreen);
+            }
+        }
+
     }
 
     @Override
@@ -137,33 +147,34 @@ public class GameScreen extends BaseScreen {
             return (userDataA.equals(userA) && userDataB.equals(userB)) ||
                     (userDataA.equals(userB) && userDataB.equals(userA));
         }
-        private String isColisionedBullet(Contact contact) {
+        private String getColisionedEntity(Contact contact, String entityId) {
             String userDataA = (String)contact.getFixtureA().getUserData();
             String userDataB = (String)contact.getFixtureB().getUserData();
-            String bullet;
+            String entity;
 
             if (userDataA == null || userDataB == null) {
                 return "0;0;0";
             }
 
-            if(userDataA.length() >=6 && userDataA.substring(0,6).equals("bullet")){
-                bullet = userDataA;
+            if(userDataA.length() >=6 && userDataA.substring(0,6).equals(entityId)){
+                entity = userDataA;
                 if(userDataB.equals("floor")){
-                    return "1;"+bullet+";"+userDataB;
+                    return "1;"+entity+";"+userDataB;
                 }else if(userDataB.length() >=6 && userDataB.substring(0,6).equals("zombie")){
-                    return "2;"+bullet+";"+userDataB;
+                    return "2;"+entity+";"+userDataB;
                 }
 
-            }else if(userDataB.length() >=6 && userDataB.substring(0,6).equals("bullet")){
-                bullet = userDataB;
+            }else if(userDataB.length() >=6 && userDataB.substring(0,6).equals(entityId)){
+                entity = userDataB;
                 if(userDataA.equals("floor")){
-                    return "1;"+bullet+";"+userDataA;
+                    return "1;"+entity+";"+userDataA;
                 }else if(userDataA.length() >=6 && userDataA.substring(0,6).equals("zombie")){
-                    return "2;"+bullet+";"+userDataA;
+                    return "2;"+entity+";"+userDataA;
                 }
             }
             return "0;0;0";
         }
+
 
         public void removeBullet(String bulletData){
             for(Bullet bullet:bulletList){
@@ -183,7 +194,6 @@ public class GameScreen extends BaseScreen {
                     bodyDeleteList.add(zombie.body);
                     zombie.remove();
                     zombieList.remove(zombie);
-
                     return;
                 }
             }
@@ -191,20 +201,47 @@ public class GameScreen extends BaseScreen {
 
         @Override
         public void beginContact(Contact contact) {
+
+            String colisionedInfo;
+            String type;
+            String bulletIndex;
+            String objectIndex;
+
             // El personaje esta sobre el piso
-            if (isColisioned(contact, "player", "floor")) {
-                player.setJumping(false);
+            //if (isColisioned(contact, "player", "floor")) {
+            //    player.setJumping(false);
+            //}
+
+
+
+            colisionedInfo = getColisionedEntity(contact, "player");
+            type = colisionedInfo.split(";")[0];
+            if(!type.equals("0")) {
+                bulletIndex = colisionedInfo.split(";")[1];
+                objectIndex = colisionedInfo.split(";")[2];
+                if (type.equals("1")) {
+                    //player colisiono con piso
+                    player.setJumping(false);
+                } else if (type.equals("2")) {
+                    player.setAlive(false);
+
+                    //player colisiono con zombie
+                }
             }
-            String bulletReturn = isColisionedBullet(contact);
-            String type = bulletReturn.split(";")[0];
-            String bulletIndex = bulletReturn.split(";")[1];
-            String objectIndex = bulletReturn.split(";")[2];
-            if(type.equals("1")){
-                removeBullet(bulletIndex);
-            } else if(type.equals("2")) {
-                //si la bala colisiono con un zombie
-                removeBullet(bulletIndex);
-                removeZombie(objectIndex);
+
+
+            colisionedInfo = getColisionedEntity(contact, "bullet");
+            type = colisionedInfo.split(";")[0];
+            if(!type.equals("0")) {
+                bulletIndex = colisionedInfo.split(";")[1];
+                objectIndex = colisionedInfo.split(";")[2];
+                if (type.equals("1")) {
+                    removeBullet(bulletIndex);
+                } else if (type.equals("2")) {
+                    //si la bala colisiono con un zombie
+                    removeBullet(bulletIndex);
+                    removeZombie(objectIndex);
+                }
             }
         }
 

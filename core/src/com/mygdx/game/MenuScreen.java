@@ -43,13 +43,11 @@ public class MenuScreen extends BaseScreen {
         });
 
         //Ubicacion de los objetos
-        //logo.setPosition(440 - logo.getWidth() / 2, 320 - logo.getHeight());
         play.setSize(200, 80);
         play.setPosition(40, 140);
 
         //se agregan los objetos al stage para que se visualisen
         stage.addActor(play);
-        //stage.addActor(logo);
     }
 
     @Override
