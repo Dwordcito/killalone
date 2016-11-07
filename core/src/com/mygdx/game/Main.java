@@ -13,14 +13,28 @@ public class Main extends Game {
 	private AssetManager manager;
 	public BaseScreen loadingScreen, menuScreen, gameScreen, playerSelectScreen, scoreScreen;
 	public Vector<Label> vectorScore = new Vector<Label>();
+	private int playerType;
 
 	@Override
 	public void create() {
 		manager = new AssetManager();
 		//Cargamos los archivos atlas(formato de mapa de imagenes)
-		manager.load("terrorist.png", TextureAtlas.class);
-		manager.load("soldier.png", TextureAtlas.class);
-		manager.load("logo.png", Texture.class);
+		manager.load("textures/terrorist/terroristRun.atlas", TextureAtlas.class);
+		manager.load("textures/terrorist/terroristJump.atlas", TextureAtlas.class);
+		manager.load("textures/terrorist/terroristShoot.atlas", TextureAtlas.class);
+		manager.load("textures/terrorist/terroristBend.atlas", TextureAtlas.class);
+		manager.load("textures/soldier/soldierRun.atlas", TextureAtlas.class);
+		manager.load("textures/soldier/soldierJump.atlas", TextureAtlas.class);
+		manager.load("textures/soldier/soldierShoot.atlas", TextureAtlas.class);
+		manager.load("textures/soldier/soldierBend.atlas", TextureAtlas.class);
+		manager.load("textures/zombie/zombie.atlas", TextureAtlas.class);
+
+		manager.load("textures/bullet.png", Texture.class);
+
+		manager.load("textures/selectplayer/terrorist.png", Texture.class);
+		manager.load("textures/selectplayer/soldier.png", Texture.class);
+
+		manager.load("textures/floor.png", Texture.class);
 		//carga de resultados de un archivo csv
 
 		//Instanciamos la pantalla de carga
@@ -29,10 +43,17 @@ public class Main extends Game {
 		setScreen(loadingScreen);
 	}
 
+	public void setPlayerType(int playerType){
+		this.playerType = playerType;
+	}
+
+	public int getPlayerType(){
+		return this.playerType;
+	}
 	public void finishLoading() {
 		//Cuando termina de cargar todo, instanciamos todas las pantallas y hacemos foco en la escena principal
 		menuScreen = new MenuScreen(this);
-		//gameScreen = new GameScreen(this);
+		gameScreen = new GameScreen(this);
 		playerSelectScreen = new PlayerSelectScreen(this);
 		scoreScreen = new ScoreScreen(this);
 		setScreen(menuScreen);
