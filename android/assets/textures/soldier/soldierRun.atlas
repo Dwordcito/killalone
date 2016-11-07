@@ -1,0 +1,47 @@
+
+soldierRun.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+soldier_running
+  rotate: false
+  xy: 1, 253
+  size: 204, 250
+  orig: 204, 250
+  offset: 0, 0
+  index: 4
+soldier_running
+  rotate: false
+  xy: 1, 1
+  size: 204, 250
+  orig: 204, 250
+  offset: 0, 0
+  index: 1
+soldier_running
+  rotate: false
+  xy: 207, 253
+  size: 204, 250
+  orig: 204, 250
+  offset: 0, 0
+  index: 5
+soldier_running
+  rotate: false
+  xy: 207, 1
+  size: 204, 250
+  orig: 204, 250
+  offset: 0, 0
+  index: 3
+soldier_running
+  rotate: false
+  xy: 413, 253
+  size: 204, 250
+  orig: 204, 250
+  offset: 0, 0
+  index: 6
+soldier_running
+  rotate: false
+  xy: 413, 1
+  size: 204, 250
+  orig: 204, 250
+  offset: 0, 0
+  index: 2

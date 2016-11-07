@@ -1,0 +1,40 @@
+
+soldierJump.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+soldier_jumping
+  rotate: false
+  xy: 1, 1
+  size: 178, 250
+  orig: 178, 250
+  offset: 0, 0
+  index: 2
+soldier_jumping
+  rotate: false
+  xy: 181, 1
+  size: 178, 250
+  orig: 178, 250
+  offset: 0, 0
+  index: 3
+soldier_jumping
+  rotate: false
+  xy: 361, 1
+  size: 178, 250
+  orig: 178, 250
+  offset: 0, 0
+  index: 5
+soldier_jumping
+  rotate: false
+  xy: 541, 1
+  size: 178, 250
+  orig: 178, 250
+  offset: 0, 0
+  index: 1
+soldier_jumping
+  rotate: false
+  xy: 721, 1
+  size: 178, 250
+  orig: 178, 250
+  offset: 0, 0
+  index: 4

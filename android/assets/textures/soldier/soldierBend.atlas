@@ -1,0 +1,33 @@
+
+soldierBend.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+soldier_bending
+  rotate: false
+  xy: 1, 1
+  size: 193, 250
+  orig: 193, 250
+  offset: 0, 0
+  index: 4
+soldier_bending
+  rotate: false
+  xy: 196, 1
+  size: 193, 250
+  orig: 193, 250
+  offset: 0, 0
+  index: 3
+soldier_bending
+  rotate: false
+  xy: 391, 1
+  size: 193, 250
+  orig: 193, 250
+  offset: 0, 0
+  index: 1
+soldier_bending
+  rotate: false
+  xy: 586, 1
+  size: 193, 250
+  orig: 193, 250
+  offset: 0, 0
+  index: 2

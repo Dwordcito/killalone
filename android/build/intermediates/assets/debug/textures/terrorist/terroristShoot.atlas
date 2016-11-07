@@ -1,0 +1,33 @@
+
+terroristShoot.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+terror_shooting
+  rotate: false
+  xy: 1, 253
+  size: 269, 250
+  orig: 269, 250
+  offset: 0, 0
+  index: 3
+terror_shooting
+  rotate: false
+  xy: 1, 1
+  size: 269, 250
+  orig: 269, 250
+  offset: 0, 0
+  index: 4
+terror_shooting
+  rotate: false
+  xy: 272, 253
+  size: 269, 250
+  orig: 269, 250
+  offset: 0, 0
+  index: 1
+terror_shooting
+  rotate: false
+  xy: 272, 1
+  size: 269, 250
+  orig: 269, 250
+  offset: 0, 0
+  index: 2

@@ -1,0 +1,47 @@
+
+terroristRun.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+terrorist
+  rotate: false
+  xy: 1, 253
+  size: 205, 250
+  orig: 205, 250
+  offset: 0, 0
+  index: 2
+terrorist
+  rotate: false
+  xy: 1, 1
+  size: 205, 250
+  orig: 205, 250
+  offset: 0, 0
+  index: 3
+terrorist
+  rotate: false
+  xy: 208, 253
+  size: 205, 250
+  orig: 205, 250
+  offset: 0, 0
+  index: 5
+terrorist
+  rotate: false
+  xy: 208, 1
+  size: 205, 250
+  orig: 205, 250
+  offset: 0, 0
+  index: 6
+terrorist
+  rotate: false
+  xy: 415, 253
+  size: 205, 250
+  orig: 205, 250
+  offset: 0, 0
+  index: 4
+terrorist
+  rotate: false
+  xy: 415, 1
+  size: 205, 250
+  orig: 205, 250
+  offset: 0, 0
+  index: 1

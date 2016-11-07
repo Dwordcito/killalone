@@ -1,0 +1,33 @@
+
+terroristBend.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+terror_bending
+  rotate: false
+  xy: 1, 1
+  size: 216, 250
+  orig: 216, 250
+  offset: 0, 0
+  index: 3
+terror_bending
+  rotate: false
+  xy: 219, 1
+  size: 216, 250
+  orig: 216, 250
+  offset: 0, 0
+  index: 4
+terror_bending
+  rotate: false
+  xy: 437, 1
+  size: 216, 250
+  orig: 216, 250
+  offset: 0, 0
+  index: 2
+terror_bending
+  rotate: false
+  xy: 655, 1
+  size: 216, 250
+  orig: 216, 250
+  offset: 0, 0
+  index: 1

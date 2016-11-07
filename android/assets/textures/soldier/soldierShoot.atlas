@@ -1,0 +1,33 @@
+
+soldierShoot.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+soldier_shooting
+  rotate: false
+  xy: 1, 1
+  size: 234, 250
+  orig: 234, 250
+  offset: 0, 0
+  index: 3
+soldier_shooting
+  rotate: false
+  xy: 237, 1
+  size: 234, 250
+  orig: 234, 250
+  offset: 0, 0
+  index: 1
+soldier_shooting
+  rotate: false
+  xy: 473, 1
+  size: 234, 250
+  orig: 234, 250
+  offset: 0, 0
+  index: 4
+soldier_shooting
+  rotate: false
+  xy: 709, 1
+  size: 234, 250
+  orig: 234, 250
+  offset: 0, 0
+  index: 2
