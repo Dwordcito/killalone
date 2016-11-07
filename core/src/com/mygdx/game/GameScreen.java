@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.entities.*;
+import com.mygdx.game.CSVManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class GameScreen extends BaseScreen {
         position = new Vector3(stage.getCamera().position);
 
         world = new World(new Vector2(0, -10), true);
-        world.setContactListener(new GameContactListener());
+        world.setContactListener(new GameContactListener(this.game.getCSV()));
 
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
         score = new Label("score: 0", skin);
@@ -151,6 +152,11 @@ public class GameScreen extends BaseScreen {
     }
 
     private class GameContactListener implements ContactListener {
+        private CSVManager csv;
+
+        public GameContactListener(CSVManager csv) {
+            this.csv = csv;
+        }
 
         private String getColisionedEntity(Contact contact, String entityId) {
             String userDataA = (String)contact.getFixtureA().getUserData();
@@ -201,6 +207,7 @@ public class GameScreen extends BaseScreen {
                     zombieList.remove(zombie);
                     player.setScore(player.getScore() + 100);
                     score.setText("score: " + player.getScore());
+                    this.csv.saveScore(player.getScore() + 100);
                     return;
                 }
             }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.mygdx.game.CSVManager;
 
 import java.util.Vector;
 
@@ -14,6 +15,7 @@ public class Main extends Game {
 	public BaseScreen loadingScreen, menuScreen, gameScreen, playerSelectScreen, scoreScreen;
 	public Vector<Label> vectorScore = new Vector<Label>();
 	private int playerType;
+	private CSVManager csv = new CSVManager();
 
 	@Override
 	public void create() {
@@ -61,5 +63,9 @@ public class Main extends Game {
 
 	public AssetManager getManager() {
 		return manager;
+	}
+
+	public CSVManager getCSV(){
+		return this.csv;
 	}
 }
