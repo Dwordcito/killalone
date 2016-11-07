@@ -50,6 +50,7 @@ public class Player extends Actor {
     private boolean shooting = false;
 
     private float elapsedTime = 0;
+    private int score = 0;
 
 
     public Player(World world, TextureAtlas textureMove, TextureAtlas textureJump, TextureAtlas textureCrouch, TextureAtlas textureShoot, Vector2 position) {
@@ -264,10 +265,20 @@ public class Player extends Actor {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+        if (alive == false) {
+            this.score = 0;
+        }
     }
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
     }
 
+    public int getScore(){
+        return this.score;
+    }
+
+    public void setScore(int score){
+        this.score = score;
+    }
 }

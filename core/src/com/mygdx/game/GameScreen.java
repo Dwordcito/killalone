@@ -27,6 +27,7 @@ public class GameScreen extends BaseScreen {
     private Factory factory;
     private Skin skin;
     private Label score;
+    private int lastScore = 0;
     private Main game;
 
     private List<Floor> floorList = new ArrayList<Floor>();
@@ -47,7 +48,7 @@ public class GameScreen extends BaseScreen {
         world.setContactListener(new GameContactListener());
 
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-
+        score = new Label("score: 0", skin);
     }
 
     @Override
@@ -198,6 +199,8 @@ public class GameScreen extends BaseScreen {
                     bodyDeleteList.add(zombie.body);
                     zombie.remove();
                     zombieList.remove(zombie);
+                    player.setScore(player.getScore() + 100);
+                    score.setText("score: " + player.getScore());
                     return;
                 }
             }
