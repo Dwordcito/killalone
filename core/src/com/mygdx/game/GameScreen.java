@@ -45,6 +45,9 @@ public class GameScreen extends BaseScreen {
 
         world = new World(new Vector2(0, -10), true);
         world.setContactListener(new GameContactListener());
+
+        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+
     }
 
     @Override
@@ -62,6 +65,13 @@ public class GameScreen extends BaseScreen {
 
         for (Zombie zombie : zombieList)
             stage.addActor(zombie);
+
+        //creamos un label utilizando el skin de letras cargado previamente, y se lo centra la pantalla.
+        score = new Label("Score: 0", skin);
+        score.setPosition(0, 360 - score.getHeight());
+
+        //Se agrega el label como un actor, para que luego el metodo draw dibuje todo a la vez.
+        stage.addActor(score);
 
         stage.addActor(player);
         stage.getCamera().position.set(position);
@@ -107,11 +117,14 @@ public class GameScreen extends BaseScreen {
         } else {
             player.die();
         }
+        Vector2 vector = stage.screenToStageCoordinates(new Vector2(10, 80));
+        score.setPosition(vector.x,vector.y);
 
         if (player.isAlive() && player.isMoving()) {
             float speed = player.getLinearVelocity().x * delta * (Constants.PIXELS_IN_METER);
             stage.getCamera().translate(speed-speed/100, 0, 0);
         }
+
 
         stage.draw();
         for(int i = 0; i<bodyDeleteList.size();i++){
@@ -137,16 +150,7 @@ public class GameScreen extends BaseScreen {
     }
 
     private class GameContactListener implements ContactListener {
-        private boolean isColisioned(Contact contact, Object userA, Object userB) {
-            Object userDataA = contact.getFixtureA().getUserData();
-            Object userDataB = contact.getFixtureB().getUserData();
 
-            if (userDataA == null || userDataB == null) {
-                return false;
-            }
-            return (userDataA.equals(userA) && userDataB.equals(userB)) ||
-                    (userDataA.equals(userB) && userDataB.equals(userA));
-        }
         private String getColisionedEntity(Contact contact, String entityId) {
             String userDataA = (String)contact.getFixtureA().getUserData();
             String userDataB = (String)contact.getFixtureB().getUserData();
@@ -207,12 +211,6 @@ public class GameScreen extends BaseScreen {
             String bulletIndex;
             String objectIndex;
 
-            // El personaje esta sobre el piso
-            //if (isColisioned(contact, "player", "floor")) {
-            //    player.setJumping(false);
-            //}
-
-
 
             colisionedInfo = getColisionedEntity(contact, "player");
             type = colisionedInfo.split(";")[0];
@@ -223,9 +221,8 @@ public class GameScreen extends BaseScreen {
                     //player colisiono con piso
                     player.setJumping(false);
                 } else if (type.equals("2")) {
-                    player.setAlive(false);
-
                     //player colisiono con zombie
+                    player.setAlive(false);
                 }
             }
 

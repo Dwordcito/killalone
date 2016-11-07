@@ -33,11 +33,6 @@ public class LoadingScreen extends BaseScreen {
             stage.addActor(loading);
         } catch (Exception ex){
             showMessageDialog(null, ex.getMessage());
-            loading = new Label("Cargando...", skin);
-            loading.setPosition(320 - loading.getWidth() / 2, 180 - loading.getHeight() / 2);
-
-            //Se agrega el label como un actor, para que luego el metodo draw dibuje todo a la vez.
-            stage.addActor(loading);
         }
     }
 
