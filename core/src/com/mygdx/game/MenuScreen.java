@@ -15,9 +15,9 @@ public class MenuScreen extends BaseScreen {
 
     private Stage stage;
     private Skin skin;
-    private Image logo;
     private TextButton play;
     private TextButton score;
+    private Image logo;
 
     public MenuScreen(final Main game) {
         super(game);
@@ -33,8 +33,7 @@ public class MenuScreen extends BaseScreen {
 
         score = new TextButton("Score", skin);
 
-        // logo del juego
-        //logo = new Image(game.getManager().get("logo.png", Texture.class));
+        logo = new Image(game.getManager().get("textures/aklogo.png", Texture.class));
 
         //se capturan eventos, por si se pulso el boton play
         play.addCaptureListener(new ChangeListener() {
@@ -53,6 +52,9 @@ public class MenuScreen extends BaseScreen {
             }
         });
 
+        logo.setSize(300,80);
+        logo.setPosition(300,150);
+
         //Ubicacion de los objetos
         play.setSize(200, 80);
         play.setPosition(40, 140);
@@ -63,6 +65,7 @@ public class MenuScreen extends BaseScreen {
         //se agregan los objetos al stage para que se visualisen
         stage.addActor(play);
         stage.addActor(score);
+        stage.addActor(logo);
     }
 
     @Override
@@ -87,7 +90,7 @@ public class MenuScreen extends BaseScreen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0.2f, 0.3f, 0.5f, 1f);
+        Gdx.gl.glClearColor(0.33f, 0.33f, 0.33f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();

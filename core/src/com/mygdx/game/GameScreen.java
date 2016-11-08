@@ -143,7 +143,7 @@ public class GameScreen extends BaseScreen {
         if(!world.isLocked())
         {
             if(!player.isAlive()){
-                this.game.setScreen(this.game.playerSelectScreen);
+                this.game.setScreen(this.game.scoreScreen);
             }
         }
 
@@ -235,8 +235,8 @@ public class GameScreen extends BaseScreen {
                     player.setJumping(false);
                 } else if (type.equals("2")) {
                     //player colisiono con zombie
+                    this.csv.saveScore(player.getScore(), game.getPlayerName());
                     player.setAlive(false);
-                    this.csv.saveScore(player.getScore() + 100, game.getPlayerName());
                 }
             }
 

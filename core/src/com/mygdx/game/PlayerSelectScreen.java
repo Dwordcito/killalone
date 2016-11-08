@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import com.mygdx.game.GameScreen;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class PlayerSelectScreen extends BaseScreen {
 
     private Stage stage;
@@ -59,6 +61,8 @@ public class PlayerSelectScreen extends BaseScreen {
                     game.setPlayerType(Constants.TERRORIST);
                     game.setScreen(game.gameScreen);
                     game.setPlayerName(txtUsername.getText());
+                } else {
+                    showMessageDialog(null, "escriba un nombre para continuar");
                 }
             }
 
@@ -71,6 +75,8 @@ public class PlayerSelectScreen extends BaseScreen {
                     game.setPlayerType(Constants.SOLDIER);
                     game.setScreen(game.gameScreen);
                     game.setPlayerName(txtUsername.getText());
+                }else {
+                    showMessageDialog(null, "escriba un nombre para continuar");
                 }
             }
 
@@ -116,7 +122,7 @@ public class PlayerSelectScreen extends BaseScreen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0.2f, 0.3f, 0.5f, 1f);
+        Gdx.gl.glClearColor(0.33f, 0.33f, 0.33f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();

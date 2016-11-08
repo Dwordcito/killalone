@@ -13,7 +13,7 @@ import java.util.Vector;
 public class Main extends Game {
 	private AssetManager manager;
 	public BaseScreen loadingScreen, menuScreen, gameScreen, playerSelectScreen, scoreScreen;
-	public Vector<Label> vectorScore = new Vector<Label>();
+
 
 	public String getPlayerName() {
 		return playerName;
@@ -42,6 +42,7 @@ public class Main extends Game {
 		manager.load("textures/zombie/zombie.atlas", TextureAtlas.class);
 
 		manager.load("textures/bullet.png", Texture.class);
+		manager.load("textures/aklogo.png", Texture.class);
 
 		manager.load("textures/selectplayer/terrorist.png", Texture.class);
 		manager.load("textures/selectplayer/soldier.png", Texture.class);
