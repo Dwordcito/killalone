@@ -4,21 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.mygdx.game.data.Score;
+
+import java.util.Vector;
 
 public class ScoreScreen extends BaseScreen {
     private Stage stage;
+    private Main game;
+    private Vector<Score> scoreList;
 
     public ScoreScreen(final Main game) {
         super(game);
+        this.game = game;
 
         //Stage que crea la escena ajustandolo a la resolucion 640/360
         stage = new Stage(new FitViewport(640, 360));
 
-        //itera para posicionar los labels de resultados
-        for (int i = 0; i < game.vectorScore.size(); i++) {
-            game.vectorScore.get(i).setPosition(320/* - loading.getWidth() *// 2, 20 + (i * 20));
-            stage.addActor(game.vectorScore.get(i));
-        }
+
+
     }
 
     @Override
