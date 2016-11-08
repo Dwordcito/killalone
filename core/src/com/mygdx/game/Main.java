@@ -14,6 +14,16 @@ public class Main extends Game {
 	private AssetManager manager;
 	public BaseScreen loadingScreen, menuScreen, gameScreen, playerSelectScreen, scoreScreen;
 	public Vector<Label> vectorScore = new Vector<Label>();
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	private String playerName;
 	private int playerType;
 	private CSVManager csv = new CSVManager();
 

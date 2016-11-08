@@ -21,11 +21,11 @@ public class ScoreScreen extends BaseScreen {
         stage = new Stage(new FitViewport(640, 360));
 
 
-
     }
 
     @Override
     public void show() {
+        scoreList = game.getCSV().loadScore();
     }
 
     @Override

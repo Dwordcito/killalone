@@ -17,6 +17,7 @@ public class MenuScreen extends BaseScreen {
     private Skin skin;
     private Image logo;
     private TextButton play;
+    private TextButton score;
 
     public MenuScreen(final Main game) {
         super(game);
@@ -30,6 +31,8 @@ public class MenuScreen extends BaseScreen {
         //boton play del menu, para iniciar el juego
         play = new TextButton("Play", skin);
 
+        score = new TextButton("Score", skin);
+
         // logo del juego
         //logo = new Image(game.getManager().get("logo.png", Texture.class));
 
@@ -42,12 +45,24 @@ public class MenuScreen extends BaseScreen {
             }
         });
 
+        score.addCaptureListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                //se va a la pantalla de inicio del juego
+                game.setScreen(game.scoreScreen);
+            }
+        });
+
         //Ubicacion de los objetos
         play.setSize(200, 80);
         play.setPosition(40, 140);
 
+        score.setSize(200, 80);
+        score.setPosition(40, 50);
+
         //se agregan los objetos al stage para que se visualisen
         stage.addActor(play);
+        stage.addActor(score);
     }
 
     @Override

@@ -9,9 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
+import com.mygdx.game.GameScreen;
 
 public class PlayerSelectScreen extends BaseScreen {
 
@@ -20,6 +23,8 @@ public class PlayerSelectScreen extends BaseScreen {
     private Image playerTerrorist;
     private Image playerSoldier;
     private Label headTitle;
+    private Label nameLabel;
+    final TextField txtUsername;
 
     public PlayerSelectScreen(final Main game) {
         super(game);
@@ -34,17 +39,27 @@ public class PlayerSelectScreen extends BaseScreen {
         // players
         playerTerrorist = new Image(game.getManager().get("textures/selectplayer/terrorist.png", Texture.class));
         playerTerrorist.setPosition((320/2) - (playerTerrorist.getWidth() / 2), (360/2) - (playerTerrorist.getHeight()/2));
-        //playerTerrorist.setSize(200,200);
+
         playerSoldier = new Image(game.getManager().get("textures/selectplayer/soldier.png", Texture.class));
         playerSoldier.setPosition(((320/2)+320) - (playerSoldier.getWidth() / 2), (360/2) - (playerSoldier.getHeight()/2));
-        //playerSoldier.setSize(200,200);
+
+        nameLabel = new Label("Escriba su nombre", skin);
+        nameLabel.setPosition((640/2)-(nameLabel.getWidth()/2), 80);
+        stage.addActor(nameLabel);
+
+        txtUsername = new TextField("", skin);
+        txtUsername.setPosition((640/2)-(txtUsername.getWidth()/2), 30);
+        stage.addActor(txtUsername);
 
         //se capturan eventos de click
         playerTerrorist.addListener( new ClickListener(){
             @Override
             public void clicked (InputEvent event, float x, float y) {
-                game.setPlayerType(Constants.TERRORIST);
-                game.setScreen(game.gameScreen);
+                if(txtUsername.getText().length() > 0) {
+                    game.setPlayerType(Constants.TERRORIST);
+                    game.setScreen(game.gameScreen);
+                    game.setPlayerName(txtUsername.getText());
+                }
             }
 
         });
@@ -52,11 +67,16 @@ public class PlayerSelectScreen extends BaseScreen {
         playerSoldier.addListener( new ClickListener(){
             @Override
             public void clicked (InputEvent event, float x, float y) {
-                game.setPlayerType(Constants.SOLDIER);
-                game.setScreen(game.gameScreen);
+                if(txtUsername.getText().length() > 0) {
+                    game.setPlayerType(Constants.SOLDIER);
+                    game.setScreen(game.gameScreen);
+                    game.setPlayerName(txtUsername.getText());
+                }
             }
 
         });
+
+
 
         // Skin de letras
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));

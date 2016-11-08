@@ -24,11 +24,11 @@ public class GameScreen extends BaseScreen {
     private Stage stage;
     private World world;
     private Vector3 position;
+
     private Player player;
     private Factory factory;
     private Skin skin;
     private Label score;
-    private int lastScore = 0;
     private Main game;
 
     private List<Floor> floorList = new ArrayList<Floor>();
@@ -50,6 +50,10 @@ public class GameScreen extends BaseScreen {
 
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
         score = new Label("score: 0", skin);
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     @Override
@@ -207,7 +211,6 @@ public class GameScreen extends BaseScreen {
                     zombieList.remove(zombie);
                     player.setScore(player.getScore() + 100);
                     score.setText("score: " + player.getScore());
-                    this.csv.saveScore(player.getScore() + 100);
                     return;
                 }
             }
@@ -233,6 +236,7 @@ public class GameScreen extends BaseScreen {
                 } else if (type.equals("2")) {
                     //player colisiono con zombie
                     player.setAlive(false);
+                    this.csv.saveScore(player.getScore() + 100, game.getPlayerName());
                 }
             }
 
@@ -265,4 +269,6 @@ public class GameScreen extends BaseScreen {
         public void postSolve(Contact contact, ContactImpulse impulse) {
         }
     }
+
+
 }
